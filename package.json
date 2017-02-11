@@ -1,0 +1,69 @@
+{
+    "name": "zat",
+    "displayName": "zat",
+    "description": "elixir language support",
+    "version": "0.0.1",
+    "publisher": "davty",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "activationEvents": [
+      "onLanguage:elixir"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "languages": [{
+            "id": "elixir",
+            "aliases": ["Elixir", "elixir"],
+            "extensions": [".ex",".exs"],
+            "configuration": "./elixir-configuration.json"
+        }],
+        "grammars": [{
+            "language": "elixir",
+            "scopeName": "source.elixir",
+            "path": "./syntaxes/elixir.json"
+        }],
+
+        "snippets": [
+            {
+                "language": "elixir",
+                "path": "./snippets/elixir.json"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Example configuration",
+            "properties": {
+            "elixir.trace.server": {
+                "type": "string",
+                "enum": [
+                    "off",
+                    "messages",
+                    "verbose"
+                ],
+                "default": "verbose",
+                "description": "Traces the communication between VSCode and the languageServerExample service."
+                }        
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",  
+        "update-vscode": "node ./node_modules/vscode/bin/install",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.33",
+        "@types/node": "^6.0.52",
+        "typescript": "^2.1.5",
+        "vscode": "^1.0.3"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^3.0.3",
+        "mz": "^2.4.0"
+    }
+}
